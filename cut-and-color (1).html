@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cut & Color – Coiffeur Winterthur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #B5455A;
+    --rose-mid: #CC6878;
+    --rose-pale: #F2D9DE;
+    --bg: #FAFAF8;
+    --bg2: #F4F1EE;
+    --bg3: #EDE8E3;
+    --dark: #1C1410;
+    --mid: #5A4A45;
+    --dim: #9A8880;
+    --line: #E2DAD6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6vw;
+    background: rgba(250,250,248,.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; font-style: italic;
+    color: var(--dark); letter-spacing: .04em;
+  }
+  .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+  .nav-links a {
+    color: var(--dim); text-decoration: none;
+    font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+    font-weight: 500; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-cta {
+    background: var(--dark); color: #fff;
+    padding: .55rem 1.5rem; border-radius: 1px;
+    font-size: .75rem; letter-spacing: .16em; text-transform: uppercase;
+    font-weight: 500; text-decoration: none; transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--rose); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 6vw; gap: 4rem;
+    padding-top: 80px;
+    background: var(--bg);
+  }
+  .hero-left { animation: fadeUp .8s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: .8rem;
+    margin-bottom: 1.8rem;
+  }
+  .hero-eyebrow-line { width: 40px; height: 1px; background: var(--rose); }
+  .hero-eyebrow span {
+    font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--rose); font-weight: 500;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400; line-height: 1.05; color: var(--dark);
+  }
+  .hero-title em { font-style: italic; color: var(--rose); }
+  .hero-sub {
+    margin-top: 1.6rem; max-width: 420px;
+    font-size: .98rem; font-weight: 300; color: var(--mid); line-height: 1.75;
+  }
+  .hero-actions { margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-dark {
+    background: var(--dark); color: #fff;
+    padding: .9rem 2.2rem; border-radius: 1px;
+    font-size: .78rem; font-weight: 500; letter-spacing: .16em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background .2s, transform .2s; display: inline-block;
+  }
+  .btn-dark:hover { background: var(--rose); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid var(--line); color: var(--mid);
+    padding: .9rem 2.2rem; border-radius: 1px;
+    font-size: .78rem; letter-spacing: .16em;
+    text-transform: uppercase; text-decoration: none;
+    transition: border-color .2s, color .2s, transform .2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--rose); color: var(--rose); transform: translateY(-2px); }
+
+  .hero-right {
+    animation: fadeUp .8s .15s ease both;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .hero-card {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    padding: 2rem 2.2rem;
+    border-radius: 2px;
+  }
+  .hero-card-label {
+    font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--dim); margin-bottom: .5rem; font-weight: 500;
+  }
+  .hero-card-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; color: var(--dark); font-weight: 600;
+  }
+  .hero-card-sub { font-size: .84rem; color: var(--mid); margin-top: .25rem; }
+  .hero-divider { display: flex; align-items: center; gap: 1rem; }
+  .hero-divider::before, .hero-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .hero-divider span { font-size: .7rem; color: var(--dim); letter-spacing: .12em; text-transform: uppercase; }
+
+  /* SECTION SHARED */
+  section { padding: 7rem 6vw; }
+  .section-header { margin-bottom: 4rem; }
+  .section-eyebrow {
+    display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem;
+  }
+  .section-eyebrow-line { width: 32px; height: 1px; background: var(--rose); }
+  .section-eyebrow span {
+    font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--rose); font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400; color: var(--dark); line-height: 1.15;
+  }
+  .section-title em { font-style: italic; }
+
+  /* SERVICES */
+  #services { background: var(--bg2); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service-card {
+    background: var(--bg2); padding: 2.5rem 2rem;
+    transition: background .25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--rose); transform: scaleX(0);
+    transform-origin: left; transition: transform .35s ease;
+  }
+  .service-card:hover { background: #fff; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 400; color: var(--rose-pale);
+    line-height: 1; margin-bottom: 1rem; font-style: italic;
+  }
+  .service-name {
+    font-size: 1rem; font-weight: 600; color: var(--dark);
+    letter-spacing: .04em; margin-bottom: .6rem;
+  }
+  .service-desc { font-size: .85rem; color: var(--mid); line-height: 1.65; font-weight: 300; }
+
+  /* ABOUT */
+  #about {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8rem; align-items: center;
+  }
+  .about-visual { position: relative; }
+  .about-frame {
+    width: 100%; aspect-ratio: 4/5;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-frame-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-style: italic; color: var(--line);
+    user-select: none; line-height: 1;
+  }
+  .about-chip {
+    position: absolute; bottom: 2rem; right: -1.5rem;
+    background: var(--rose); color: #fff;
+    padding: 1.2rem 1.5rem; text-align: center;
+    border-radius: 1px;
+  }
+  .about-chip strong { display: block; font-size: 1.8rem; font-weight: 600; line-height: 1; }
+  .about-chip span { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+
+  .about-text p {
+    font-size: .97rem; line-height: 1.85; color: var(--mid);
+    font-weight: 300; margin-top: 1.4rem;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem; margin-top: 2.5rem;
+    padding-top: 2rem; border-top: 1px solid var(--line);
+  }
+  .stat strong {
+    display: block; font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 400; color: var(--dark); line-height: 1;
+  }
+  .stat span { font-size: .74rem; color: var(--dim); letter-spacing: .08em; text-transform: uppercase; margin-top: .3rem; display: block; }
+
+  /* REVIEWS */
+  #reviews { background: var(--bg2); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: #fff; padding: 2.2rem;
+    border: 1px solid var(--line); border-radius: 1px;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .review-card:hover {
+    border-color: var(--rose-pale);
+    box-shadow: 0 8px 32px rgba(181,69,90,.06);
+  }
+  .review-stars {
+    display: flex; gap: 3px; margin-bottom: 1rem;
+  }
+  .review-stars i {
+    display: inline-block; width: 10px; height: 10px;
+    background: var(--rose);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; line-height: 1.75; color: var(--mid);
+    font-style: italic;
+  }
+  .review-author {
+    margin-top: 1.4rem; padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: .76rem; color: var(--dark); letter-spacing: .08em;
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  /* BOOKING STRIP */
+  .booking-strip {
+    background: var(--dark); color: #fff;
+    padding: 4rem 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .booking-strip h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400; line-height: 1.2;
+  }
+  .booking-strip h2 em { font-style: italic; color: var(--rose-mid); }
+  .booking-strip p { color: #A09090; font-size: .9rem; margin-top: .5rem; font-weight: 300; }
+  .btn-rose {
+    background: var(--rose); color: #fff;
+    padding: 1rem 2.4rem; border-radius: 1px;
+    font-size: .78rem; font-weight: 500; letter-spacing: .16em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background .2s; white-space: nowrap; display: inline-block;
+  }
+  .btn-rose:hover { background: #9e3a4d; }
+
+  /* CONTACT + HOURS */
+  #contact {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start;
+  }
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+  .hours-table tr { border-bottom: 1px solid var(--line); }
+  .hours-table td { padding: .9rem 0; font-size: .9rem; font-weight: 300; }
+  .hours-table td:first-child { color: var(--dim); }
+  .hours-table td:last-child { text-align: right; color: var(--dark); font-weight: 500; }
+  .closed-day { color: var(--dim) !important; font-style: italic; }
+
+  .contact-item {
+    display: flex; gap: 1.2rem; align-items: flex-start; margin-top: 2rem;
+  }
+  .contact-icon {
+    width: 42px; height: 42px;
+    border: 1px solid var(--line); border-radius: 1px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--mid);
+  }
+  .contact-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .contact-label { font-size: .68rem; color: var(--dim); letter-spacing: .14em; text-transform: uppercase; font-weight: 500; }
+  .contact-value {
+    font-size: .95rem; color: var(--dark); margin-top: .25rem;
+    text-decoration: none; font-weight: 400; display: block;
+  }
+  a.contact-value:hover { color: var(--rose); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 2.5rem 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic; color: #fff;
+  }
+  .footer-copy { font-size: .76rem; color: #6A5A55; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: .73rem; color: #6A5A55; text-decoration: none;
+    letter-spacing: .12em; text-transform: uppercase; transition: color .2s;
+  }
+  .footer-links a:hover { color: #fff; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding-top: 100px; }
+    #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+    .about-chip { display: none; }
+    .nav-links { display: none; }
+    .booking-strip { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Cut &amp; Color</div>
+  <ul class="nav-links">
+    <li><a href="#services">Leistungen</a></li>
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#reviews">Stimmen</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <a class="nav-cta" href="http://www.cutandcolor.ch/de/coiffeur-winterthur" target="_blank">Online buchen</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Coiffeur · Winterthur Altstadt</span>
+    </div>
+    <h1 class="hero-title">
+      Ihr Stil.<br>
+      Unsere <em>Leidenschaft.</em>
+    </h1>
+    <p class="hero-sub">Modernes Haardesign, präzise Schnitte und leuchtende Farben – im Herzen von Winterthur, am Unteren Graben 17.</p>
+    <div class="hero-actions">
+      <a class="btn-dark" href="http://www.cutandcolor.ch/de/coiffeur-winterthur" target="_blank">Termin buchen</a>
+      <a class="btn-ghost" href="#services">Leistungen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">Standort</div>
+      <div class="hero-card-value">Unterer Graben 17, Winterthur</div>
+      <div class="hero-card-sub">In der Altstadt, gut erreichbar per ÖV</div>
+    </div>
+    <div class="hero-divider"><span>Öffnungszeiten</span></div>
+    <div class="hero-card">
+      <div class="hero-card-label">Mo – Mi &amp; Fr</div>
+      <div class="hero-card-value">09:00 – 19:00 Uhr</div>
+      <div class="hero-card-sub">Donnerstag bis 20:00 · Samstag bis 17:00</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Teil der Cut &amp; Color Gruppe</div>
+      <div class="hero-card-value">16 Filialen in der Schweiz</div>
+      <div class="hero-card-sub">Zu den führenden Coiffeur-Ketten der Schweiz</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Leistungen</span></div>
+    <h2 class="section-title">Was wir für Sie tun</h2>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <div class="service-name">Haarschnitt</div>
+      <div class="service-desc">Klassische und moderne Schnitte – vom cleanen Bob bis zum trendigen Layered Cut, stets präzise und auf Sie abgestimmt.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <div class="service-name">Coloration</div>
+      <div class="service-desc">Kräftige, leuchtende Farben oder dezente Töne – wir beraten Sie individuell und setzen Ihre Wunschfarbe professionell um.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <div class="service-name">Balayage &amp; Highlights</div>
+      <div class="service-desc">Sanfte Übergänge, cremige Blondtöne und natürlicher Glow – für einen Look, der strahlt.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <div class="service-name">Styling &amp; Finish</div>
+      <div class="service-desc">Professionelles Finish für den Alltag oder besondere Anlässe – für das gewisse Etwas.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <div class="service-name">Haarpflege</div>
+      <div class="service-desc">Intensive Behandlungen mit hochwertigen Produkten für gesundes, glänzendes Haar.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-frame">
+      <div class="about-frame-inner">C&amp;C</div>
+    </div>
+    <div class="about-chip">
+      <strong>16</strong>
+      <span>Filialen CH</span>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Über uns</span></div>
+    <h2 class="section-title">Style &amp; <em>Erfahrung</em></h2>
+    <p>Cut &amp; Color steht für ein innovatives Kunden-Erlebnis, hohe Qualität zu fairen Preisen und ein erstklassiges Farb- und Produktsortiment. Mit 16 Standorten zählen wir zu den führenden Coiffeur-Ketten der Schweiz.</p>
+    <p>Unser einzigartiges „Style-yourself"-Konzept stellt Sie in den Mittelpunkt: Ihre Vorstellung, unsere Expertise – gemeinsam entstehen Looks, die begeistern. In Winterthur empfangen wir Sie am Unteren Graben 17, mitten in der belebten Altstadt.</p>
+    <div class="about-stats">
+      <div class="stat">
+        <strong>16</strong>
+        <span>Filialen Schweiz</span>
+      </div>
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Leidenschaft</span>
+      </div>
+      <div class="stat">
+        <strong>Online</strong>
+        <span>Buchbar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Kundenstimmen</span></div>
+    <h2 class="section-title">Was unsere Kunden sagen</h2>
+  </div>
+  <div class="reviews-grid reveal">
+    <div class="review-card">
+      <div class="review-stars"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="review-text">Kräftig, leuchtend – mein neuer Rotton ist ein echtes Statement. Das Team hat genau verstanden, was ich wollte, und das Ergebnis hat meine Erwartungen übertroffen.</div>
+      <div class="review-author">Stammkundin</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="review-text">Chocolate Balayage perfekt umgesetzt. Der Übergang ist so natürlich und weich – ich bekomme seit Wochen Komplimente. Definitiv mein neuer Stammsalon.</div>
+      <div class="review-author">Kundin via Google</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="review-text">Der Bob sitzt perfekt. Zeitlos, clean und frisch – genau dieser Look, den ich mir vorgestellt hatte. Die Beratung war kompetent und ohne Druck.</div>
+      <div class="review-author">Kundin via Google</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="review-text">Endlich ein Salon, der wirklich zuhört. Cremige Blondtöne, sanfte Übergänge und genau dieser natürliche Glow, den ich mir gewünscht hatte.</div>
+      <div class="review-author">Stammkundin</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING STRIP -->
+<div class="booking-strip">
+  <div>
+    <h2>Bereit für Ihren<br><em>neuen Look?</em></h2>
+    <p>Buchen Sie Ihren Termin einfach und schnell – online, rund um die Uhr.</p>
+  </div>
+  <a class="btn-rose" href="http://www.cutandcolor.ch/de/coiffeur-winterthur" target="_blank">Jetzt online buchen</a>
+</div>
+
+<!-- HOURS + CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Öffnungszeiten</span></div>
+    <h2 class="section-title">Wann Sie uns<br><em>finden</em></h2>
+    <table class="hours-table">
+      <tr><td>Montag</td><td>09:00 – 19:00</td></tr>
+      <tr><td>Dienstag</td><td>09:00 – 19:00</td></tr>
+      <tr><td>Mittwoch</td><td>09:00 – 19:00</td></tr>
+      <tr><td>Donnerstag</td><td>09:00 – 20:00</td></tr>
+      <tr><td>Freitag</td><td>09:00 – 19:00</td></tr>
+      <tr><td>Samstag</td><td>09:00 – 17:00</td></tr>
+      <tr><td>Sonntag</td><td class="closed-day">Geschlossen</td></tr>
+    </table>
+  </div>
+  <div class="reveal">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Kontakt</span></div>
+    <h2 class="section-title">So erreichen<br><em>Sie uns</em></h2>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Adresse</div>
+        <a class="contact-value" href="https://maps.google.com/?q=Unterer+Graben+17+8400+Winterthur" target="_blank">Unterer Graben 17, 8400 Winterthur</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Telefon</div>
+        <a class="contact-value" href="tel:0526307071">052 630 70 71</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">E-Mail</div>
+        <a class="contact-value" href="mailto:info@cutandcolor.ch">info@cutandcolor.ch</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Website</div>
+        <a class="contact-value" href="http://www.cutandcolor.ch" target="_blank">www.cutandcolor.ch</a>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a class="btn-dark" href="http://www.cutandcolor.ch/de/coiffeur-winterthur" target="_blank">Online buchen</a>
+      <a class="btn-ghost" href="https://maps.google.com/?q=Unterer+Graben+17+8400+Winterthur" target="_blank">Route planen</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Cut &amp; Color</div>
+  <div class="footer-copy">© 2025 Cut &amp; Color · Unterer Graben 17, 8400 Winterthur</div>
+  <div class="footer-links">
+    <a href="#services">Leistungen</a>
+    <a href="#reviews">Bewertungen</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
